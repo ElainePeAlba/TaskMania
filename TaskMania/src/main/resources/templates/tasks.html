@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Listado de Tareas</title>
+</head>
+<body>
+    <h1>Listado de Tareas</h1>
+    <form id="deleteForm" method="post" th:action="@{/tasks/delete-multiple}">
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Seleccionar</th>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Categoría</th>
+                    <th>Estado</th>
+                    <th>Fecha de Entrega</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="task : ${tasks}">
+					<td><input type="checkbox" name="ids" th:value="${task.id}" /></td>
+                    <td th:text="${task.id}"></td>
+                    <td th:text="${task.name}"></td>
+                    <td th:text="${task.category}"></td>
+                    <td th:text="${task.status}"></td>
+                    <td th:text="${task.dueDate ?: 'Sin Fecha'}"></td>
+                </tr>
+            </tbody>
+        </table>
+        <button type="submit">Eliminar Seleccionadas</button>
+		<p th:if="${error}" th:text="${error}" style="color:red;"></p>
+    </form>
+	
+    <a href="/add-task">Añadir Tarea</a>
+    <a href="/">Volver a la página principal</a>
+</body>
+</html>

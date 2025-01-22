@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Listado de Proyectos</title>
+</head>
+<body>
+    <h1>Listado de Proyectos</h1>
+    <form id="deleteForm" method="post" th:action="@{/projects/delete-multiple}">
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Seleccionar</th>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Descripción</th>
+                    <th>Creador</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="project : ${projects}">
+					<td><input type="checkbox" name="ids" th:value="${project.id}" /></td>
+                    <td th:text="${project.id}"></td>
+                    <td th:text="${project.name}"></td>
+                    <td th:text="${project.description}"></td>
+                    <td th:text="${project.usuario_id}"></td>
+                </tr>
+            </tbody>
+        </table>
+        <button type="submit">Eliminar Seleccionados</button>
+		<p th:if="${error}" th:text="${error}" style="color:red;"></p>
+    </form>
+	
+    <a href="/add-project">Añadir Proyecto</a>
+    <a href="/">Volver a la página principal</a>
+</body>
+</html>

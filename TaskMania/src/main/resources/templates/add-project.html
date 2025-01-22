@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Agregar Proyecto</title>
+</head>
+<body>
+    <h1>Agregar Proyecto</h1>
+    <form action="/add-project" method="post" th:object="${project}">
+        <label for="name">Nombre:</label>
+        <input type="text" id="name" name="name" th:field="*{name}" required />
+        <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>
+
+		<label for="description">Descripción:</label>
+		        <input type="text" id="description" name="description" th:field="*{description}" required />
+		        <p th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></p>
+
+        <label for="usuario_id">Creador:</label>
+		<input type="text" id="usuario_id" name="usuario_id" th:field="*{usuario_id}" required />
+		    <p th:if="${#fields.hasErrors('usuario_id')}" th:errors="*{usuario_id}"></p>
+
+
+        <button type="submit">Guardar</button>
+    </form>
+    <a href="/projects">Cancelar</a>
+</body>
+</html>
